@@ -9,10 +9,22 @@ import com.example.patient.features.patients.PatientViewModel
 
 class PatientsAdapter(private val patients:List<PatientRemoteModel>) :
     RecyclerView.Adapter<PatientsAdapter.PatientsViewHolder>() {
+    var indexLastSelected = -1
     inner class PatientsViewHolder(private val binding: RowPatientBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(model:PatientRemoteModel){
+            fun bind(model:PatientRemoteModel,position:Int){
+                binding.cvPatients.setOnClickListener {
+                    if (position != indexLastSelected){
+                        if (indexLastSelected != -1){
+                            patients[indexLastSelected].selected = false
+                            notifyItemChanged(indexLastSelected)
+                        }
+                        indexLastSelected = position
+                        patients[position].selected = true
+                        notifyItemChanged(position)
+                    }
 
+                }
             }
 
     }
@@ -27,6 +39,6 @@ class PatientsAdapter(private val patients:List<PatientRemoteModel>) :
     }
 
     override fun onBindViewHolder(holder: PatientsViewHolder, position: Int) {
-        holder.bind(patients[position])
+        holder.bind(patients[position],position)
     }
 }
