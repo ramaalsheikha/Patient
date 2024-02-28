@@ -14,5 +14,7 @@ data class PatientRemoteModel(
     val updatedAt:String,
     val __v:Int,
     val tests:List<TestModel>,
+    //local var
+    var selected:Boolean = false
 
 )

@@ -7,7 +7,7 @@ import com.example.patient.data.model.PatientRemoteModel
 import com.example.patient.databinding.RowPatientBinding
 import com.example.patient.features.patients.PatientViewModel
 
-class PatientsAdapter(private val list:List<PatientRemoteModel>) :
+class PatientsAdapter(private val patients:List<PatientRemoteModel>) :
     RecyclerView.Adapter<PatientsAdapter.PatientsViewHolder>() {
     inner class PatientsViewHolder(private val binding: RowPatientBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -23,10 +23,10 @@ class PatientsAdapter(private val list:List<PatientRemoteModel>) :
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return patients.size
     }
 
     override fun onBindViewHolder(holder: PatientsViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(patients[position])
     }
 }

@@ -5,4 +5,7 @@
     <color name="DarkBrown"> #5D4037</color>
     <color name="MediumBrown"> #795548</color>
     <color name="LightBrown"> #A1887F</color>
+    <color name="color_primary_variant"> #e4f8ff</color>
+    <color name="color_primary"> #007bfe</color>
+    <color name="color_secondary"> #a6c9d7</color>
 </resources>
