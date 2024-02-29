@@ -1,13 +1,10 @@
-package com.example.patient.features.patients
+package com.example.patient.presentation.features.patients
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.patient.data.model.PatientRemoteModel
+import com.example.patient.data.domain.model.patiens.PatientRemoteModel
 import com.example.patient.data.repository.PatientRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow

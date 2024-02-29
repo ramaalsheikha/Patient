@@ -1,4 +1,4 @@
-package com.example.patient.data.model
+package com.example.patient.data.domain.model.patiens
 
 data class PatientRemoteModel(
     val _id:String,

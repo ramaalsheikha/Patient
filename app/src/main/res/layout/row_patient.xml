@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.example.patient.data.model.PatientRemoteModel" />
+            type="com.example.patient.data.domain.model.patiens.PatientRemoteModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -25,7 +25,7 @@
                 android:id="@+id/iv_patient"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                imageUrl="@{model.photo}"
+                app:imageUrl="@{model.photo}"
                 android:scaleType="fitXY"
                 android:layout_margin="10dp"
                 app:layout_constraintDimensionRatio="4:3"
