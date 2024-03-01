@@ -1,10 +1,11 @@
-package com.example.patient.presentation.features.patients
+package com.example.patient.presntation.features.patients
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.domain.usecase.patiens.GetPatientsSortedByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -32,7 +33,7 @@ class PatientViewModel @Inject constructor(private val getPatientsSortedByNameUs
     }
 
     private fun getPatient() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _progressBarStatFlow.emit(true)
             try {
                 _patientSuccessStateFlow.emit(getPatientsSortedByNameUseCase())

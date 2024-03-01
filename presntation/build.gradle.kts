@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.patient.data"
+    namespace = "com.example.patient.presntation"
     compileSdk = 33
 
     defaultConfig {
@@ -14,6 +14,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
     }
 
     buildTypes {
@@ -35,11 +39,20 @@ android {
 }
 
 dependencies {
-    api(project(":domain"))
-    //dagger hilt dependency injection
+
+    implementation(project(":data"))
+    implementation(project(":core"))
+
+    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
+    //Navigation Component
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    //viewModelScope
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    //dependency injection
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-android-compiler:2.49")
-    // Retrofit Library
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //dependency injection (HiltViewModel)
+    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
 }

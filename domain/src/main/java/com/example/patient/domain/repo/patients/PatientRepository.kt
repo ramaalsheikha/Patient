@@ -1,4 +1,4 @@
-package com.example.patient.domain.repo
+package com.example.patient.domain.repo.patients
 
 import com.example.patient.domain.model.patiens.PatientRemoteModel
 

@@ -1,8 +1,8 @@
-package com.example.patient.presentation.features
+package com.example.patient.presntation.features
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.patient.R
+import com.example.patient.presntation.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

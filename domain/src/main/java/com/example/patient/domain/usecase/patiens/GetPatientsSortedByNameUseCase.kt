@@ -1,7 +1,7 @@
 package com.example.patient.domain.usecase.patiens
 
 import com.example.patient.domain.model.patiens.PatientRemoteModel
-import com.example.patient.domain.repo.PatientRepository
+import com.example.patient.domain.repo.patients.PatientRepository
 import javax.inject.Inject
 
 class GetPatientsSortedByNameUseCase@Inject constructor(private val repository: PatientRepository){

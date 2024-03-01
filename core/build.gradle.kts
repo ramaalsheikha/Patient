@@ -38,9 +38,6 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.12.0")
-    //coil
+    //Image Loading Version (coil)
     implementation("io.coil-kt:coil:2.6.0")
-
 }

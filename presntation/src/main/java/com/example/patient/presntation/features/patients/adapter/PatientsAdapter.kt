@@ -1,10 +1,9 @@
-package com.example.patient.adapter
+package com.example.patient.presntation.features.patients.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patient.domain.model.patiens.PatientRemoteModel
-import com.example.patient.databinding.RowPatientBinding
+import com.example.patient.presntation.databinding.RowPatientBinding
 
 class PatientsAdapter(private val patients:List<com.example.patient.domain.model.patiens.PatientRemoteModel>) :
     RecyclerView.Adapter<PatientsAdapter.PatientsViewHolder>() {
