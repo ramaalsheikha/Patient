@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,13 +21,13 @@ class PatientViewModel @Inject constructor(private val getPatientsSortedByNameUs
         MutableStateFlow(
             emptyList()
         )
-    val patientSuccessStateFlow: SharedFlow<List<PatientRemoteModel>> = _patientSuccessStateFlow
+    val patientSuccessStateFlow: SharedFlow<List<PatientRemoteModel>> = _patientSuccessStateFlow.asStateFlow()
 
     private val _patientErrorStateFlow: MutableStateFlow<Exception?> = MutableStateFlow(null)
-    val patientErrorStatFlow: MutableStateFlow<Exception?> = _patientErrorStateFlow
+    val patientErrorStatFlow: StateFlow<Exception?> = _patientErrorStateFlow.asStateFlow()
 
     private val _progressBarStatFlow:MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val progressBarStatFlow: StateFlow<Boolean> = _progressBarStatFlow
+    val progressBarStatFlow: StateFlow<Boolean> = _progressBarStatFlow.asStateFlow()
 
         init {
         getPatient()
