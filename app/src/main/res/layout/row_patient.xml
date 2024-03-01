@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.example.patient.data.domain.model.patiens.PatientRemoteModel" />
+            type="com.example.patient.domain.model.patiens.PatientRemoteModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

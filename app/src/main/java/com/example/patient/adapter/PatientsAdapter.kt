@@ -3,15 +3,15 @@ package com.example.patient.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patient.data.domain.model.patiens.PatientRemoteModel
+import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.databinding.RowPatientBinding
 
-class PatientsAdapter(private val patients:List<PatientRemoteModel>) :
+class PatientsAdapter(private val patients:List<com.example.patient.domain.model.patiens.PatientRemoteModel>) :
     RecyclerView.Adapter<PatientsAdapter.PatientsViewHolder>() {
     var indexLastSelected = -1
     inner class PatientsViewHolder(private val binding: RowPatientBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(model: PatientRemoteModel, position:Int){
+            fun bind(model: com.example.patient.domain.model.patiens.PatientRemoteModel, position:Int){
                 binding.model = model
                 binding.cvPatients.setOnClickListener {
                     if (position != indexLastSelected){

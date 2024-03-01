@@ -1,4 +1,4 @@
-package com.example.patient.data.domain.model.patiens
+package com.example.patient.domain.model.patiens
 
 data class PatientWrappedRemoteModel(
     val result:Int,

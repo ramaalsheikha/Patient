@@ -2,8 +2,8 @@ package com.example.patient.presentation.features.patients
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.patient.data.domain.model.patiens.PatientRemoteModel
-import com.example.patient.data.repository.PatientRepository
+import com.example.patient.domain.model.patiens.PatientRemoteModel
+import com.example.patient.domain.usecase.patiens.GetPatientsSortedByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PatientViewModel @Inject constructor(private val repository: PatientRepository) :
+class PatientViewModel @Inject constructor(private val getPatientsSortedByNameUseCase: GetPatientsSortedByNameUseCase) :
     ViewModel() {
 
     private val _patientSuccessStateFlow: MutableStateFlow<List<PatientRemoteModel>> =
@@ -35,8 +35,7 @@ class PatientViewModel @Inject constructor(private val repository: PatientReposi
         viewModelScope.launch {
             _progressBarStatFlow.emit(true)
             try {
-                val response = repository.getPatients()
-                _patientSuccessStateFlow.emit(response)
+                _patientSuccessStateFlow.emit(getPatientsSortedByNameUseCase())
             } catch (e: Exception) {
                 _patientErrorStateFlow.emit(e)
             }
