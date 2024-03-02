@@ -10,4 +10,9 @@
         android:name="com.example.patient.presntation.features.patients.PatientFragment"
         android:label="PatientFragment"
         tools:layout="@layout/patient_fragment"/>
+    <fragment
+        android:id="@+id/addPatientFragment"
+        android:name="com.example.patient.presntation.features.add.AddPatientFragment"
+        android:label="AddPatientFragment"
+        tools:layout="@layout/fragment_add_patient"/>
 </navigation>

@@ -30,6 +30,11 @@ class PatientFragment() :Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initObserver()
+    }
+
+    private fun initObserver() {
         lifecycleScope.launch {
             viewModel.patientSuccessStateFlow.collect { response ->
                 if (response.isNotEmpty()) {
@@ -37,21 +42,18 @@ class PatientFragment() :Fragment() {
                 }
             }
         }
-            lifecycleScope.launch {
-                viewModel.patientErrorStatFlow.collect{ e ->
-                    if (e!=null){
-                        Log.e("TAG","Error $e")
-                    }
-
+        lifecycleScope.launch {
+            viewModel.patientErrorStatFlow.collect{ e ->
+                if (e!=null){
+                    Log.e("TAG","Error $e")
                 }
+
             }
-            lifecycleScope.launch {
-                viewModel.progressBarStatFlow.collect{show ->
-                    binding.pbPatient.isVisible = show
-                }
+        }
+        lifecycleScope.launch {
+            viewModel.progressBarStatFlow.collect{show ->
+                binding.pbPatient.isVisible = show
             }
-
-
-
+        }
     }
 }
