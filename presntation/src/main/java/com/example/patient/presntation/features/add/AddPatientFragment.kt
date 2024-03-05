@@ -67,22 +67,32 @@ class AddPatientFragment : Fragment() {
         if (binding.tieAddress.text?.isEmpty() == true) {
             isValid = false
             binding.tieAddress.error = "Address is Empty"
+        }else{
+            binding.tiAddress.error = null
         }
         if (binding.tieBirthdate.text?.isEmpty() == true) {
             isValid = false
             binding.tieBirthdate.error = "Birthdate is Empty"
+        }else{
+            binding.tiBirthdate.error = null
         }
         if (binding.tieEmail.text?.isEmpty() == true) {
             isValid = false
             binding.tieEmail.error = "Email is Empty"
+        }else{
+            binding.tiEmail.error = null
         }
         if (binding.tieGender.text?.isEmpty() == true) {
             isValid = false
             binding.tieGender.error = "Gender is Empty"
+        }else{
+            binding.tiGender.error = null
         }
         if (binding.tieMobile.text?.isEmpty() == true) {
             isValid = false
             binding.tieMobile.error = "Mobile is Empty"
+        }else{
+            binding.tiMobile.error = null
         }
         return isValid
     }

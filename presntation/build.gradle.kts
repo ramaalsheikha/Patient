@@ -56,4 +56,6 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.49")
     //dependency injection (HiltViewModel)
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
+    //swip refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }
