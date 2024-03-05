@@ -61,6 +61,8 @@ class AddPatientFragment : Fragment() {
         if (binding.tieFullName.text?.isEmpty() == true) {
             isValid = false
             binding.tieFullName.error = "Name is Empty"
+        }else{
+           binding.tiFullName.error = null
         }
         if (binding.tieAddress.text?.isEmpty() == true) {
             isValid = false

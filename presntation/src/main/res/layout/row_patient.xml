@@ -23,8 +23,8 @@
             android:background="@{model.selected ? @color/color_primary : @color/color_primary_variant  }">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_patient"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 app:imageUrl="@{model.photo}"
                 android:scaleType="fitXY"
                 android:layout_margin="10dp"
@@ -65,7 +65,7 @@
                 style="@style/TextAppearance.Material3.BodyLarge"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="@{model.birthdate}"
+                android:text="@{model.condition}"
                 android:textColor="@{model.selected ? @color/white : @color/black }"
                 app:layout_constraintTop_toBottomOf="@id/tv_birthdate"
                 app:layout_constraintStart_toStartOf="parent"
