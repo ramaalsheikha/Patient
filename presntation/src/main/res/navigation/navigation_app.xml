@@ -2,17 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_app.xml"
-    app:startDestination="@id/patientFragment"
-    xmlns:tools="http://schemas.android.com/tools">
+
+    app:startDestination="@id/patientFragment">
+
 
     <fragment
         android:id="@+id/patientFragment"
         android:name="com.example.patient.presntation.features.patients.PatientFragment"
-        android:label="PatientFragment"
-        tools:layout="@layout/patient_fragment"/>
+        android:label="PatientFragment" />
     <fragment
         android:id="@+id/addPatientFragment"
         android:name="com.example.patient.presntation.features.add.AddPatientFragment"
-        android:label="AddPatientFragment"
-        tools:layout="@layout/fragment_add_patient"/>
+        android:label="AddPatientFragment" />
 </navigation>

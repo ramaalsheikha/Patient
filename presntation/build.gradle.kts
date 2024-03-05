@@ -48,6 +48,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     //Navigation Component
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     //viewModelScope
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     //dependency injection

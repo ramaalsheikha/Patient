@@ -37,7 +37,7 @@ class AddPatientFragment : Fragment() {
 
     private fun initListener() {
         binding.btnAdd.setOnClickListener {
-            if (infoIsValid()){
+            if (infoIsValid()) {
                 val body = getInfoPatient()
                 viewModel.addPatient(body)
             }
@@ -55,65 +55,61 @@ class AddPatientFragment : Fragment() {
         )
     }
 
-    private fun infoIsValid():Boolean {
+    private fun infoIsValid(): Boolean {
         var isValid = true
 
-        if (binding.tieFullName.text?.isEmpty() == true){
+        if (binding.tieFullName.text?.isEmpty() == true) {
             isValid = false
             binding.tieFullName.error = "Name is Empty"
         }
-        if (binding.tieAddress.text?.isEmpty() == true){
+        if (binding.tieAddress.text?.isEmpty() == true) {
             isValid = false
             binding.tieAddress.error = "Address is Empty"
         }
-        if (binding.tieBirthdate.text?.isEmpty() == true){
+        if (binding.tieBirthdate.text?.isEmpty() == true) {
             isValid = false
             binding.tieBirthdate.error = "Birthdate is Empty"
         }
-        if (binding.tieEmail.text?.isEmpty() == true){
+        if (binding.tieEmail.text?.isEmpty() == true) {
             isValid = false
             binding.tieEmail.error = "Email is Empty"
         }
-        if (binding.tieGender.text?.isEmpty() == true){
+        if (binding.tieGender.text?.isEmpty() == true) {
             isValid = false
             binding.tieGender.error = "Gender is Empty"
         }
-        if (binding.tieMobile.text?.isEmpty() == true){
+        if (binding.tieMobile.text?.isEmpty() == true) {
             isValid = false
             binding.tieMobile.error = "Mobile is Empty"
         }
-
         return isValid
     }
 
     private fun initObserver() {
         lifecycleScope.launch {
             viewModel.addPatientSuccessStateFlow.collect { response ->
-                if (response != null){
+                if (response != null) {
                     Toast.makeText(
                         requireContext(),
-                        "Patient added succcessfuly : \n name ${response!!.name}  \n createdAt : ${response.createdAt} ",
+                        "Patient added successfully : \n name ${response.name}  \n createdAt : ${response.createdAt} ",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
             }
         }
 
         lifecycleScope.launch {
-            viewModel.progressBarStatFlow.collect{show ->
+            viewModel.progressBarStatFlow.collect { show ->
                 binding.pbAddPatient.isVisible = show
             }
         }
 
         lifecycleScope.launch {
-            viewModel.addPatientErrorStatFlow.collect{e ->
-                if (e != null){
+            viewModel.addPatientErrorStatFlow.collect { e ->
+                if (e != null) {
                     Log.d("TAG00", e.toString())
                 }
-
             }
         }
-
     }
 }

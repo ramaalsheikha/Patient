@@ -1,7 +1,7 @@
 package com.example.patient.data.repository
 
 import com.example.patient.data.datasource.PatientDataSource
-import com.example.patient.domain.model.AddPatientsRemoteModel
+import com.example.patient.domain.model.add.AddPatientsRemoteModel
 import com.example.patient.domain.model.add.BodyAddPatientModel
 import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.domain.repo.patients.PatientRepository

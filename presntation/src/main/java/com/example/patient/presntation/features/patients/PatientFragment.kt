@@ -10,13 +10,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.patient.presntation.R
 import com.example.patient.presntation.databinding.PatientFragmentBinding
 import com.example.patient.presntation.features.patients.adapter.PatientsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PatientFragment() :Fragment() {
+class PatientFragment :Fragment() {
     private lateinit var binding: PatientFragmentBinding
     val viewModel: PatientViewModel by viewModels()
     override fun onCreateView(
@@ -32,6 +34,18 @@ class PatientFragment() :Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initObserver()
+        initListener()
+    }
+
+    private fun initListener() {
+        binding.fabAdd.setOnClickListener {
+            try {
+                findNavController().navigate(R.id.addPatientFragment)
+            }catch (e:Exception){
+                Log.e("TAGE",e.localizedMessage)
+            }
+        }
+
     }
 
     private fun initObserver() {
