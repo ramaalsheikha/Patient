@@ -15,12 +15,14 @@ import com.example.patient.presntation.R
 import com.example.patient.presntation.databinding.PatientFragmentBinding
 import com.example.patient.presntation.features.patients.adapter.PatientsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PatientFragment :Fragment() {
     private lateinit var binding: PatientFragmentBinding
     val viewModel: PatientViewModel by viewModels()
+    private lateinit var adapter: PatientsAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,8 +35,14 @@ class PatientFragment :Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initAdapter()
         initObserver()
         initListener()
+    }
+
+    private fun initAdapter() {
+        adapter = PatientsAdapter()
+        binding.rvPatient.adapter = adapter
     }
 
     private fun initListener() {
@@ -45,18 +53,27 @@ class PatientFragment :Fragment() {
                 Log.e("TAGE",e.localizedMessage)
             }
         }
+        binding.srPatient.setOnRefreshListener {
+
+            lifecycleScope.launch {
+                delay(3000)
+                binding.srPatient.isRefreshing = false
+            }
+        }
+
 
     }
 
     private fun initObserver() {
         lifecycleScope.launch {
-            viewModel.patientSuccessStateFlow.collect { response ->
+            viewModel.patientStateFlow.collect { response ->
                 if (response.isNotEmpty()) {
-                    binding.rvPatient.adapter = PatientsAdapter(response)
+                    adapter.submitList(response)
                 }
             }
         }
         lifecycleScope.launch {
+            viewModel.getPatient()
             viewModel.patientErrorStatFlow.collect{ e ->
                 if (e!=null){
                     Log.e("TAG","Error $e")

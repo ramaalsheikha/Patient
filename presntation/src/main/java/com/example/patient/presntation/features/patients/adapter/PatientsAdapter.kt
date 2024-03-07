@@ -2,11 +2,14 @@ package com.example.patient.presntation.features.patients.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.presntation.databinding.RowPatientBinding
 
-class PatientsAdapter(private val patients:List<com.example.patient.domain.model.patiens.PatientRemoteModel>) :
-    RecyclerView.Adapter<PatientsAdapter.PatientsViewHolder>() {
+class PatientsAdapter :
+    ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsViewHolder>(DiffCallback) {
     var indexLastSelected = -1
     inner class PatientsViewHolder(private val binding: RowPatientBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -15,29 +18,40 @@ class PatientsAdapter(private val patients:List<com.example.patient.domain.model
                 binding.cvPatients.setOnClickListener {
                     if (position != indexLastSelected){
                         if (indexLastSelected != -1){
-                            patients[indexLastSelected].selected = false
+                            getItem(position).selected = false
                             notifyItemChanged(indexLastSelected)
                         }
                         indexLastSelected = position
-                        patients[position].selected = true
+                        getItem(position).selected = true
                         notifyItemChanged(position)
                     }
 
                 }
             }
+    }
+    private object DiffCallback : DiffUtil.ItemCallback<PatientRemoteModel>(){
+        override fun areItemsTheSame(
+            oldItem: PatientRemoteModel,
+            newItem: PatientRemoteModel
+        ): Boolean {
+            return oldItem._id == newItem._id
+        }
+
+        override fun areContentsTheSame(
+            oldItem: PatientRemoteModel,
+            newItem: PatientRemoteModel
+        ): Boolean {
+            return oldItem == newItem
+        }
 
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientsViewHolder {
         val binding = RowPatientBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return PatientsViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return patients.size
-    }
-
     override fun onBindViewHolder(holder: PatientsViewHolder, position: Int) {
-        holder.bind(patients[position],position)
+        val model = getItem(position)
+        holder.bind(model,position)
     }
 }

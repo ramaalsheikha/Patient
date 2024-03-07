@@ -17,11 +17,11 @@ import javax.inject.Inject
 class PatientViewModel @Inject constructor(private val getPatientsSortedByNameUseCase: GetPatientsSortedByNameUseCase) :
     ViewModel() {
 
-    private val _patientSuccessStateFlow: MutableStateFlow<List<PatientRemoteModel>> =
+    private val _patientStateFlow: MutableStateFlow<List<PatientRemoteModel>> =
         MutableStateFlow(
             emptyList()
         )
-    val patientSuccessStateFlow: SharedFlow<List<PatientRemoteModel>> = _patientSuccessStateFlow.asStateFlow()
+    val patientStateFlow: SharedFlow<List<PatientRemoteModel>> = _patientStateFlow.asStateFlow()
 
     private val _patientErrorStateFlow: MutableStateFlow<Exception?> = MutableStateFlow(null)
     val patientErrorStatFlow: StateFlow<Exception?> = _patientErrorStateFlow.asStateFlow()
@@ -33,11 +33,11 @@ class PatientViewModel @Inject constructor(private val getPatientsSortedByNameUs
         getPatient()
     }
 
-    private fun getPatient() {
+    public fun getPatient() {
         viewModelScope.launch(Dispatchers.IO) {
             _progressBarStatFlow.emit(true)
             try {
-                _patientSuccessStateFlow.emit(getPatientsSortedByNameUseCase())
+                _patientStateFlow.emit(getPatientsSortedByNameUseCase())
             } catch (e: Exception) {
                 _patientErrorStateFlow.emit(e)
             }
