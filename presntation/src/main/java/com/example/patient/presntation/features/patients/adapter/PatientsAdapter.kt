@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.presntation.databinding.RowPatientBinding
 
-class PatientsAdapter :
+class PatientsAdapter (private val onDeletePatient:(id:String) ->Unit):
     ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsViewHolder>(DiffCallback) {
     var indexLastSelected = -1
     inner class PatientsViewHolder(private val binding: RowPatientBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(model: com.example.patient.domain.model.patiens.PatientRemoteModel, position:Int){
+            fun bind(model:PatientRemoteModel, position:Int){
                 binding.model = model
                 binding.cvPatients.setOnClickListener {
                     if (position != indexLastSelected){
@@ -25,7 +25,9 @@ class PatientsAdapter :
                         getItem(position).selected = true
                         notifyItemChanged(position)
                     }
-
+                }
+                binding.ivDelete.setOnClickListener {
+                    onDeletePatient(model._id)
                 }
             }
     }
