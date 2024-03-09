@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.presntation.databinding.RowPatientBinding
 
-class PatientsAdapter (private val onDeletePatient:(id:String) ->Unit):
+class PatientsAdapter (private val onDeletePatient:(id:String) ->Unit,private val onClickItem:(id:String)->Unit):
     ListAdapter<PatientRemoteModel,PatientsAdapter.PatientsViewHolder>(DiffCallback) {
     var indexLastSelected = -1
     inner class PatientsViewHolder(private val binding: RowPatientBinding) :
@@ -25,9 +25,10 @@ class PatientsAdapter (private val onDeletePatient:(id:String) ->Unit):
                         getItem(position).selected = true
                         notifyItemChanged(position)
                     }
+                    onClickItem(model.id)
                 }
                 binding.ivDelete.setOnClickListener {
-                    onDeletePatient(model._id)
+                    onDeletePatient(model.id)
                 }
             }
     }
@@ -36,7 +37,7 @@ class PatientsAdapter (private val onDeletePatient:(id:String) ->Unit):
             oldItem: PatientRemoteModel,
             newItem: PatientRemoteModel
         ): Boolean {
-            return oldItem._id == newItem._id
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(

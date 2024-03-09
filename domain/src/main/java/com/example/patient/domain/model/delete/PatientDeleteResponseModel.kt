@@ -1,7 +1,8 @@
 package com.example.patient.domain.model.delete
 
 data class PatientDeleteResponseModel(
-    val status:Int,
-    val message:String
+    val statusCode:Int,
+    val status:String,
+    val isOperational:Boolean
 
 )

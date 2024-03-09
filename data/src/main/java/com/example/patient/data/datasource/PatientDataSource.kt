@@ -3,6 +3,7 @@ package com.example.patient.data.datasource
 import com.example.patient.domain.model.add.AddPatientsRemoteModel
 import com.example.patient.domain.model.add.BodyAddPatientModel
 import com.example.patient.domain.model.delete.PatientDeleteResponseModel
+import com.example.patient.domain.model.details.DetailsPatientWrappedRemoteModel
 import com.example.patient.domain.model.patiens.PatientWrappedRemoteModel
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -20,4 +21,7 @@ interface PatientDataSource {
 
     @DELETE("patients/{id}")
     suspend fun deletePatients(@Path("id") id: String): PatientDeleteResponseModel
+
+    @GET("patients/{id}")
+    suspend fun getPatientById(@Path("id") id:String):DetailsPatientWrappedRemoteModel
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -44,7 +45,7 @@ class PatientFragment :Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = PatientsAdapter(::deletePatient)
+        adapter = PatientsAdapter(::deletePatient,::onClickItem)
         binding.rvPatient.adapter = adapter
     }
 
@@ -87,27 +88,32 @@ class PatientFragment :Fragment() {
         }
     }
     private fun onPatientDeleteSuccess(response:PatientDeleteResponseModel?){
+        Log.i("DeleteTag", response!!.statusCode.toString())
         if (response!=null) {
-            Toast.makeText(requireContext(), "${response.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "${response.status}", Toast.LENGTH_SHORT).show()
             viewModel.getPatient()
         }
 
     }
     private fun onSuccessPatients(response:List<PatientRemoteModel>){
-        if (response?.isNotEmpty() == true) {
+        if (response.isNotEmpty()) {
             adapter.submitList(response)
         }
     }
 
     private fun deletePatient(id:String){
         MaterialAlertDialogBuilder(requireContext())
-            .setMessage("Are certain about patient deletion process")
+            .setMessage("Are you certain about patient deletion process")
             .setNegativeButton("No"){dialog,_->
                 dialog.dismiss()
             }
             .setPositiveButton("Yes"){dialog , _ ->
                 viewModel.deletePatient(id)
+                dialog.dismiss()
             }
             .show()
+    }
+    private fun onClickItem(id:String){
+       findNavController().navigate(R.id.detailsFragment, bundleOf("id" to id))
     }
 }

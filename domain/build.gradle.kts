@@ -39,4 +39,6 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-android-compiler:2.49")
     implementation("com.google.code.gson:gson:2.9.0")
+    //serializedName
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 }
