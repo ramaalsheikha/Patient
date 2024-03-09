@@ -19,4 +19,8 @@ data class PatientRemoteModel(
     val v:Int,
     //local var
     var selected:Boolean = false
-)
+){
+    fun getPatientInfo():String{
+        return "Lives in $address , Email $email , Born on $birthdate"
+    }
+}
