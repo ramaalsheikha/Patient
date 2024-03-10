@@ -21,6 +21,6 @@ data class PatientRemoteModel(
     var selected:Boolean = false
 ){
     fun getPatientInfo():String{
-        return "Lives in $address , Email $email , Born on $birthdate"
+        return "Lives in $address \n Email $email \n Born on $birthdate"
     }
 }

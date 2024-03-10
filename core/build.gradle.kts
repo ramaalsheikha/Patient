@@ -40,4 +40,6 @@ android {
 dependencies {
     //Image Loading Version (coil)
     implementation("io.coil-kt:coil:2.6.0")
+    //Fragment class (androidx)
+    implementation("androidx.appcompat:appcompat:1.6.1")
 }
