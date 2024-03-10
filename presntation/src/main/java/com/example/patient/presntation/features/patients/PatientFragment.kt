@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.patient.core.BaseFragment
 import com.example.patient.domain.model.delete.PatientDeleteResponseModel
 import com.example.patient.domain.model.patiens.PatientRemoteModel
 import com.example.patient.presntation.R
@@ -23,18 +24,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PatientFragment :Fragment() {
-    private lateinit var binding: PatientFragmentBinding
+class PatientFragment :BaseFragment<PatientFragmentBinding>(R.layout.patient_fragment){
     val viewModel: PatientViewModel by viewModels()
     private lateinit var adapter: PatientsAdapter
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = PatientFragmentBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
